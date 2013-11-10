@@ -1,42 +1,48 @@
-$(document).ready(function(){
-    $(".btn2").toggle();
-    $(".btn1").click(function(){
-        $(".btn1").attr("disabled", true);
-        $(this).html("counting...");
-        var timer = setInterval(function(){
-            var count = $(".box").length;
-            var first_box = Math.floor(Math.random()*count);
-            if (count != 1){
-                $(".box:eq("+first_box+")")
-                                       .animate({height:"146px",width:"146px",
-                                                top:"-=3px",left:"-=3px"},160)
-                                       .animate({height:"140px",width:"140px",
-                                                top:"+=3px",left:"+=3px"},120)
-                                       .animate({height:"360px",width:"360px",
-                                                top:"50px",left:"580px"},200)
-                                       .animate({height:"5px",width:"5px",
-                                                top:"20px",left:"730px",
-                                                opacity:"0"},120)
-                                       .css("z-index",1)
-                var timer2rm = setInterval(function(){
-                    $(".box:eq("+first_box+")").remove();
-                    clearInterval(timer2rm);},600);
-            } else {
-                clearInterval(timer);
-                var last_box = $(".box:eq("+first_box+")")
-                                       .animate({height:"360px",width:"360px",
-                                                top:"50px",left:"580px"},160)
-                                       .animate({height:"370px",width:"370px",
-                                                top:"-=5px",left:"-=5px"},220)
-                                       .animate({height:"360px",width:"360px",
-                                                top:"+=5px",left:"+=5px"},220);
+function run_box(duration, select_box, box_num, stop, final_box) {
+    var j = select_box - 1;
+    $(".box:eq(" + j + ")").css({"border":"0px",
+                                "width":"140px", "height":"140px"});
+    $(".box:eq(" + select_box + ")").css({"border":"5px solid #ffff00",
+                                "width":"130px", "height":"130px"});
+    if(!stop) {
+        if(duration > 50)
+            duration  = duration - 40;
+        else if(duration < 50 && final_box > 0){
+            final_box = final_box - 1;
+        } else 
+           stop = true;
+    } else {
+        if(duration < 400)
+            duration = duration + 40;
+        else {
+            var last_box = $(".box:eq(" + select_box + ")");
+            setTimeout(function(){
+                last_box.animate({height:"360px",width:"360px",
+                                  top:"50px",left:"580px"},1260)
+                        .css("z-index", 1);
                 var pre_message = last_box.html();
                 last_box.html("Finally<br>Let's Go <br>" + pre_message);
                 last_box.css("color", "#FFFF00");
                 $(".btn1").html("Over");
                 $(".btn2").toggle();
-            }
-        },650);
+            }, 600);
+            return false;
+        }
+    }
+    select_box = (select_box + 1) % box_num;
+    setTimeout(run_box, duration, duration, select_box, box_num, stop, final_box);
+}
+$(document).ready(function(){
+    $(".btn2").toggle();
+    $(".btn1").click(function(){
+        $(".btn1").attr("disabled", true);
+        $(this).html("counting...");
+        var count = $(".box").length;
+        var final_box = Math.floor(Math.random()*count) + 60;
+        var duration_tm = 400;
+        var i = 0;
+        var stop = false;
+        setTimeout(run_box, duration_tm, duration_tm, i, count, stop, final_box);
     });
     $(".btn2").click(function(){
         $(this).toggle();
