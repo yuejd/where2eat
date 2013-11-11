@@ -79,6 +79,22 @@ body {
 
 .place_form {
   position: fixed;
-  bottom: 60px;
-  left: 40px;
+  top: 60px;
+  right: 40px;
+}
+
+.tiny_box {
+    position: absolute;
+    top:40px;
+    left:30px;
+    width:100px;
+    height:600px;
+}
+.place_name {
+    background:#4f94cd;
+    height:40px;
+    width:80px;
+    margin:4px;
+    text-align:center;
+    font-size: 12px;
 }

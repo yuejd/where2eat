@@ -36,6 +36,12 @@
         <input type="text" class="" placeholder="please input the name of place...">
         <br><button type="submit" class="btn btn_pos">Submit</button>
     </form>
+    <div class="tiny_box">
+    <?php 
+		require_once "func/func.php";
+		get_all_places();
+    ?>
+    </div>
     <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
 </body>
