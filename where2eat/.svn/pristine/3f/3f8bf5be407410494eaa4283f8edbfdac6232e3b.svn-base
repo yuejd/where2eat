@@ -1,0 +1,6 @@
+<?php
+$place_name = $_GET["place_name"];
+require_once "../func/func.php";
+insert_place( $place_name );
+echo $place_name;
+?>

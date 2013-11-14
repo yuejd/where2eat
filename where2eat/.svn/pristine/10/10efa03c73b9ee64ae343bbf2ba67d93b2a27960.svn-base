@@ -1,0 +1,163 @@
+/* line 1, ../sass/main.scss */
+body {
+  background: #eee;
+}
+
+/* line 4, ../sass/main.scss */
+.box {
+  background: #4f94cd;
+  height: 140px;
+  width: 140px;
+  margin: 4px;
+  position: absolute;
+  text-align: center;
+  font-size: 30px;
+  line-height: 45px;
+  color: #00ff00;
+}
+
+/* line 15, ../sass/main.scss */
+#box1 {
+  top: 100px;
+  left: 320px;
+}
+
+/* line 19, ../sass/main.scss */
+#box2 {
+  top: 100px;
+  left: 465px;
+}
+
+/* line 23, ../sass/main.scss */
+#box3 {
+  top: 100px;
+  left: 610px;
+}
+
+/* line 27, ../sass/main.scss */
+#box4 {
+  top: 100px;
+  left: 755px;
+}
+
+/* line 31, ../sass/main.scss */
+#box5 {
+  top: 100px;
+  left: 900px;
+}
+
+/* line 35, ../sass/main.scss */
+#box6 {
+  top: 100px;
+  left: 1045px;
+}
+
+/* line 39, ../sass/main.scss */
+#box12 {
+  top: 245px;
+  left: 320px;
+}
+
+/* line 43, ../sass/main.scss */
+#box11 {
+  top: 245px;
+  left: 465px;
+}
+
+/* line 47, ../sass/main.scss */
+#box10 {
+  top: 245px;
+  left: 610px;
+}
+
+/* line 51, ../sass/main.scss */
+#box9 {
+  top: 245px;
+  left: 755px;
+}
+
+/* line 55, ../sass/main.scss */
+#box8 {
+  top: 245px;
+  left: 900px;
+}
+
+/* line 59, ../sass/main.scss */
+#box7 {
+  top: 245px;
+  left: 1045px;
+}
+
+/* line 63, ../sass/main.scss */
+.btn1 {
+  height: 50px;
+  width: 100px;
+  position: absolute;
+  text-align: center;
+  top: 430px;
+  left: 710px;
+}
+
+/* line 71, ../sass/main.scss */
+.btn2 {
+  height: 50px;
+  width: 100px;
+  position: absolute;
+  text-align: center;
+  top: 430px;
+  left: 850px;
+}
+
+/* line 79, ../sass/main.scss */
+.btn3 {
+  height: 50px;
+  width: 100px;
+  position: absolute;
+  text-align: center;
+  top: 430px;
+  left: 570px;
+}
+
+/* line 88, ../sass/main.scss */
+.place_form {
+  position: fixed;
+  top: 60px;
+  right: 40px;
+}
+
+/* line 94, ../sass/main.scss */
+.tiny_box {
+  position: absolute;
+  top: 40px;
+  left: 20px;
+  width: 110px;
+  height: 700px;
+}
+
+/* line 102, ../sass/main.scss */
+.place_name {
+  color: white;
+}
+
+/* line 106, ../sass/main.scss */
+.inner_box {
+  background: #4f94cd;
+  height: 40px;
+  width: 50px;
+  margin: 2px;
+  float: left;
+  text-align: center;
+  font-size: 10px;
+}
+
+/* line 115, ../sass/main.scss */
+.delete_btn {
+  position: relative;
+  height: 4px;
+  width: 4px;
+  top: 4px;
+  left: 16px;
+  text-align: center;
+  visibility: hidden;
+  overflow: hidden;
+}
