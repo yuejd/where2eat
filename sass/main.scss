@@ -1,6 +1,7 @@
 body {
     background:#eee;
 }
+
 .box {
     background:#4f94cd;
     height:140px;
@@ -11,6 +12,19 @@ body {
     font-size: 30px;
     line-height: 45px;
     color:#00ff00;
+}
+#box0 {
+    background:#4f94cd;
+    height:40px;
+    width:40px;
+    margin:0px;
+    position:absolute;
+    text-align:center;
+    font-size: 10px;
+    line-height: 10px;
+    color:#00ff00;
+    top:30px;
+    left:150px;
 }
 #box1 {
     top:100px;
@@ -76,6 +90,14 @@ body {
     top:430px;
     left:850px;
 }
+.btn3 {
+    height:50px;
+    width:100px;
+    position:absolute;
+    text-align:center;
+    top:430px;
+    left:570px;
+}
 
 .place_form {
   position: fixed;
@@ -84,17 +106,35 @@ body {
 }
 
 .tiny_box {
-    position: absolute;
-    top:40px;
-    left:30px;
-    width:100px;
-    height:600px;
+  position: absolute;
+  top: 40px;
+  left: 20px;
+  width: 110px;
+  height: 700px;
 }
+
 .place_name {
-    background:#4f94cd;
-    height:40px;
-    width:80px;
-    margin:4px;
-    text-align:center;
-    font-size: 12px;
+  color: white;
 }
+
+.inner_box {
+  background: #4f94cd;
+  height: 40px;
+  width: 50px;
+  margin: 2px ;
+  float:left;
+  text-align: center;
+  font-size: 10px;
+}
+.delete_btn {
+    position: relative;
+    height:4px;
+    width:4px;
+    top:4px;
+    left:16px;
+//    font-size: 8px;
+    text-align: center;
+    visibility: hidden;
+    overflow: hidden;
+}
+

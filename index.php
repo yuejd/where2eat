@@ -15,6 +15,7 @@
     <![endif]-->
 </head>
 <body>
+    <div id="box0"></div>
     <div id="box_cont">
         <div class="box" id="box1">永和豆浆</div>
         <div class="box" id="box2">沁芥兰</div>
@@ -33,8 +34,8 @@
     <button class="btn btn-primary btn2">Reset</button>
     <form class="place_form">
         <p class="p-block">Add more places...</p>
-        <input type="text" class="" placeholder="please input the name of place...">
-        <br><button type="submit" class="btn btn_pos">Submit</button>
+        <input type="text" class="input_area" placeholder="please input the name of place...">
+        <br><button type="button" class="btn btn_pos sub_btn">Submit</button>
     </form>
     <div class="tiny_box">
     <?php 

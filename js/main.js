@@ -32,9 +32,74 @@ function run_box(duration, select_box, box_num, stop, final_box) {
     select_box = (select_box + 1) % box_num;
     setTimeout(run_box, duration, duration, select_box, box_num, stop, final_box);
 }
+
+function rebuildBox() {
+    var i = 0;
+    var tmpPlace;
+    var placeCount;
+    var placeArray = new Array();
+    while(tmpPlace = $(".place_name:eq(" + i +")").html()) {
+        placeArray[i] = tmpPlace;
+        i++;
+    }
+    i = 0;
+    var boxTop = 100;
+    var boxLeft = 320;
+    var re_timer = setInterval(function(){
+        placeCount = placeArray.length;
+        var j = Math.floor(Math.random()*placeCount);
+        var tmpBox = $($(".box")[i]);
+        tmpBox.html(placeArray.splice(j, 1)[0]);
+        tmpBox.show();
+        if(i == 11) {
+            clearInterval(re_timer);
+        }
+        if(i<6) {
+            tmpBox.animate({"top": boxTop+"px", "left":boxLeft+"px",
+                            "height":"140px", "width":"140px",
+                            "fontSize":"30px", "lineHeight":"45px"}, 130);
+            boxLeft += 145;
+        }
+        else if( i > 5 ) {
+            boxLeft -= 145;
+            boxTop = 245;
+            tmpBox.animate({"top": boxTop+"px", "left":boxLeft+"px",
+                            "height":"140px", "width":"140px",
+                            "fontSize":"30px", "lineHeight":"45px"}, 130);
+        }
+        i++;
+    }, 150);
+}
+
+function refreshBox() {
+    var i = 0;
+    var hi = 50;
+    var re_timer = setInterval(function(){
+       $( $('.box')[i] ).animate({top:"30px", left:"150px",
+                                  width:"40px", height:"40px",
+                                  fontSize:"10px", lineHeight:"10px"}, 130, 
+                                  function(){ 
+                                      var tmp_box = $( $('.box')[i] ); 
+                                      tmp_box.css({"border":"0px", "top":hi+"px", 
+                                                   "left":"40px", "z-index":-1,
+                                                   "color":"#00ff00",});
+                                      $("#box0").html(tmp_box.html());
+                                      tmp_box.hide();
+                                      hi += 20;
+                                      if(i<11) {
+                                          i++;
+                                      }
+                                      else {
+                                          clearInterval(re_timer);
+                                          rebuildBox();
+                                      }
+                                  });
+    }, 170);
+}
+
 $(document).ready(function(){
-    $(".btn2").toggle();
     $(".btn1").click(function(){
+        $(".btn2").toggle();
         $(".btn1").attr("disabled", true);
         $(this).html("counting...");
         var count = $(".box").length;
@@ -48,19 +113,57 @@ $(document).ready(function(){
         $(this).toggle();
         $(".btn1").attr("disabled", false);
         $(".btn1").html("开始摇号");
-        $("#box_cont").html("\
-                <div class='box' id='box1'>永和豆浆</div>\
-        		<div class='box' id='box2'>沁芥兰</div>\
-        		<div class='box' id='box3'>全家</div>\
-       	 		<div class='box' id='box4'>勾魂面</div>\
-        		<div class='box' id='box5'>A1</div>\
-        		<div class='box' id='box6'>沈小福</div>\
-        		<div class='box' id='box7'>一点味</div>\
-        		<div class='box' id='box8'>龙抄手</div>\
-        		<div class='box' id='box9'>牛牛鱼面</div>\
-        		<div class='box' id='box10'>蜀人蜀食</div>\
-        		<div class='box' id='box11'>宜宾燃面</div>\
-                <div class='box' id='box12'>巷子肥肠</div>"
-            );
+        refreshBox();
+        $(this).toggle();
     });
+    $(".sub_btn").click(function(){
+        $.get("../operate_place.php",{"method":"add","place_name":$(".input_area").val()}, function(data,textStatus){
+            if(data == 'false')
+                alert("this place exists here");
+            else {
+                var div_data = "<div class='inner_box'><div class='place_name'>" + data + "</div>"; 
+                var button_del = "<button class='delete_btn'></button></div>"
+                $(".tiny_box").append( div_data + button_del );
+                $(".inner_box:last").mouseover(function(){
+                   $(this).children("button").css({"visibility":"visible"});
+                });
+                $(".inner_box:last").mouseout(function(){
+                    $(this).children("button").css({"visibility":"hidden"});
+                });
+                $(".inner_box:last").click(function(){
+                   var place_name = $(this).children(".place_name").html();
+                   $.get("../operate_place.php", {"method":"delete", "place_name":place_name}, function(data, textStatus){
+                        $(".inner_box:last").remove();
+                   });
+                });
+            }
+        });
+    });
+   $(".inner_box").each(function(i, elem){
+       if(i>13){
+           $(elem).mouseover(function(){
+               $(this).children("button").css({"visibility":"visible"});
+           });
+       }
+   });
+   $(".inner_box").each(function(i, elem){
+       if(i>13){
+           $(elem).mouseout(function(){
+               $(this).children("button").css({"visibility":"hidden"});
+           });
+       }
+   });
+   $(".delete_btn").each(function(i, elem){
+       if(i>13){
+           $(elem).click(function(){
+               var place_name = $(this).prev().html();
+               $.get("../operate_place.php", {"method":"delete", "place_name":place_name}, function(data, textStatus){
+                    $(elem).parent().remove();
+               });
+           });
+       }
+   });
+   $(".btn3").click(function(){
+   
+   });
 });
